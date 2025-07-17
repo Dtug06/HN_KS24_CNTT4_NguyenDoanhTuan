@@ -34,21 +34,24 @@ void peek(stack *s) {
     }
 }
 void printClipBoard(stack *s) {
-    if (s->top==NULL) {
+    if (s->top == NULL) {
         printf("Stack is empty\n");
+        return;
     }
-        while (s->top!=NULL) {
-            printf("%s\n",s->top->text);
-            s->top=s->top->next;
-        }
+    node *temp = s->top;
+    while (temp != NULL) {
+        printf("%s\n", temp->text);
+        temp = temp->next;
+    }
 }
+
 int undo(stack *s) {
     if (s->top->text==NULL) {
         printf("Stack is empty\n");
         return 0;
 
     }
-    stack *current=s->top;
+    node *current=s->top;
     s->top=s->top->next;
     free(current);
     return 1;
